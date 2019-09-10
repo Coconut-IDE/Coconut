@@ -1,6 +1,6 @@
 # Coconut
 
-Coconut is an Android Studio plugin to help developers handling privacy.
+Coconut is an Android Studio plugin to help developers handle privacy.
 
 The initial release of Coconut is described in the following paper:
 >Tianshi Li, Yuvraj Agarwal, Jason I. Hong.
