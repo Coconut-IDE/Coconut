@@ -1,10 +1,20 @@
 # Coconut
 
+Coconut is an Android Studio plugin to help developers handling privacy.
+
+The initial release of Coconut is described in the following paper:
+>Tianshi Li, Yuvraj Agarwal, Jason I. Hong.
+>"[**Coconut: An IDE Plugin for Developing Privacy-Friendly Apps**](https://dl.acm.org/citation.cfm?doid=3301777.3287056)".
+>In _Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies_, Volume 2 Issue 4, December 2018.
+
+
 How to get started
 ------------------
 
 ### Prerequisite
-1. Install 1) Android Studio (for Android development and plugin testing, **recommended version: Android Studio AI-182.5107.16.33.5314842**, see [Android Studio download archives](https://developer.android.com/studio/archive)) 2) IntelliJ IDEA (for plugin development)
+1. Install
+- 1) Android Studio (for Android development and plugin testing, **recommended version: Android Studio AI-182.5107.16.33.5314842**, see [Android Studio download archives](https://developer.android.com/studio/archive))
+- 2) IntelliJ IDEA (for plugin development)
 2. Install the "Groovy" plugin in IntelliJ IDEA or Android Studio
 
 ### Steps to build and run the plugin
