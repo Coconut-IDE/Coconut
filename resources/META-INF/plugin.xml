@@ -1,6 +1,21 @@
+<!--
+  ~ Copyright 2000-2016 JetBrains s.r.o.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
 <idea-plugin version="2">
-  <id>com.your.company.unique.plugin.id</id>
-  <name>Plugin display name here</name>
+  <id>org.cmuchimps.coconut</id>
+  <name>Coconut</name>
   <version>1.0</version>
   <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
 
@@ -23,13 +38,28 @@
   <!-- uncomment to enable plugin in all products
   <depends>com.intellij.modules.lang</depends>
   -->
+  <depends>org.intellij.groovy</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
-  </extensions>
+    <toolWindow id="PrivacyChecker" anchor="bottom" factoryClass="org.intellij.privacyhelper.panelUI.PrivacyCheckerToolWindow"/>
+    <projectService serviceInterface="org.intellij.privacyhelper.panelUI.PrivacyCheckerView" serviceImplementation="org.intellij.privacyhelper.panelUI.PrivacyCheckerView" />
+    <localInspection shortName="PersonalDataSourceAPIInspection" displayName="PersonalDataSourceAPIInspection" groupName="PersonalDataSourceAPIInspection" enabledByDefault="true" implementationClass="org.intellij.privacyhelper.codeInspection.inspections.PersonalDataSourceAPIInspection"/>
+    <localInspection shortName="PersonalDataSinkAPIInspection" displayName="PersonalDataSinkAPIInspection" groupName="PersonalDataSinkAPIInspection" enabledByDefault="true" implementationClass="org.intellij.privacyhelper.codeInspection.inspections.PersonalDataSinkAPIInspection"/>
+    <localInspection shortName="ThirdPartyAPIInspection" displayName="ThirdPartyAPIInspection" groupName="ThirdPartyAPIInspection" enabledByDefault="true" implementationClass="org.intellij.privacyhelper.codeInspection.inspections.ThirdPartyAPIInspection"/>
+    <localInspection shortName="AnnotationConsistencyInspection" displayName="AnnotationConsistencyInspection" groupName="AnnotationConsistencyInspection" enabledByDefault="true" level="Inconsistent" implementationClass="org.intellij.privacyhelper.codeInspection.inspections.AnnotationConsistencyInspection"/>
+    <localInspection shortName="AnnotationPrivacySensitivityInspection" displayName="AnnotationPrivacySensitivityInspection" groupName="AnnotationPrivacySensitivityInspection" enabledByDefault="true" level="PrivacySensitive" implementationClass="org.intellij.privacyhelper.codeInspection.inspections.AnnotationPrivacySensitivityInspection"/>
+    <localInspection shortName="AnnotationTooltipInspection" displayName="AnnotationTooltipInspection" groupName="AnnotationTooltipInspection" enabledByDefault="true" level="Transparent" implementationClass="org.intellij.privacyhelper.codeInspection.inspections.AnnotationTooltipInspection"/>
 
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
+    <severitiesProvider implementation="org.intellij.privacyhelper.codeInspection.severitiesProviders.PrivacySensitiveAnnotationSeveritiesProvider"/>
+    <severitiesProvider implementation="org.intellij.privacyhelper.codeInspection.severitiesProviders.InconsistentAnnotationSeveritiesProvider"/>
+    <severitiesProvider implementation="org.intellij.privacyhelper.codeInspection.severitiesProviders.TransparentHighlightSeveritiesProvider"/>
+
+    <lang.foldingBuilder language="JAVA" implementationClass="org.intellij.privacyhelper.ideUI.AnnotationFolderBuilder"/>
+
+    <postStartupActivity implementation="org.intellij.privacyhelper.startup.PrivacyCompiler" />
+    <postStartupActivity implementation="org.intellij.privacyhelper.startup.ImportAnnotationLibTask" />
+    <postStartupActivity implementation="org.intellij.privacyhelper.startup.RegisterEventListenersTask" />
+  </extensions>
 
 </idea-plugin>
